@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
-import {getEmployees} from "../../utils/api";
+import {getEmployees, putEmployee} from "../../utils/api";
 import Loader from "../../components/Loader";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import Header from "../../components/Header";
 import {Box, Button, Card, CardContent, Grid, TextField} from "@mui/material";
 import {fileToDataUri} from "../../utils/helpers";
@@ -20,6 +20,7 @@ const EmployeeCard = () => {
     const [loading, setLoading] = useState(true);
     const {id} = useParams();
     const inputRef = useRef<HTMLInputElement>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (id) getEmployees(id)
@@ -43,6 +44,12 @@ const EmployeeCard = () => {
     const handleTextFieldChange = (field: string, value: any) => {
         setEmployee({...employee, [field]: value});
         setWasChanged(true);
+    }
+
+    const handleSave = () => {
+        setLoading(true);
+        putEmployee(employee)
+            .then(() => navigate("/employees", { replace: false }));
     }
 
     return (
@@ -123,7 +130,13 @@ const EmployeeCard = () => {
                     {wasChanged &&
                         <Grid item>
                             <div style={{width: 800, paddingTop: 20}}>
-                                <Button variant="contained" style={{float: 'right'}}>Зберегти</Button>
+                                <Button
+                                    variant="contained"
+                                    style={{float: 'right'}}
+                                    onClick={handleSave}
+                                >
+                                    Зберегти
+                                </Button>
                             </div>
                         </Grid>
                     }
