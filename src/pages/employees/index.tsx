@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {getEmployees} from "../../utils/api";
 import Loader from "../../components/Loader";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import Header from "../../components/Header";
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -36,8 +37,10 @@ const Employees = () => {
     return (
         <>
             {loading && <Loader />}
+            <Header />
             <DataGrid
                 autoHeight
+                disableSelectionOnClick
                 columns={columns}
                 rows={list}
                 pageSize={10}
