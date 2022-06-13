@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<Employees />} />
@@ -17,5 +17,5 @@ root.render(
             <Route path="/employees" element={<Employees />} />
         </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
