@@ -1,7 +1,9 @@
-export const getEmployees = (id: String = ''): Promise<any> => {
-    return fetch(`${process.env.REACT_APP_URL}/employees${id? '/'+id : ''}`)
+const url: String = "https://app-time-tracking.herokuapp.com";
+
+export const getEmployees = (id: Number = 0): Promise<any> => {
+    return fetch(`${url}/employees${id? "/"+id : ""}`)
         .then(result => {
-            if (result.ok) result.json();
+            if (result.ok) return result.json();
             throw new Error("Error getting employees list");
         });
 }
