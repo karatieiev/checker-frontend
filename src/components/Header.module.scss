@@ -1,11 +1,12 @@
 ul {
-  margin: 0;
+  margin: 0 auto;
   padding: 5px 0 5px 0;
   list-style-type: none;
   overflow: hidden;
   font-weight: bold;
   font-family: sans-serif;
   background-color: #fafafa;
+  width: 800px;
 
   li {
     float: left;

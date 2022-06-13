@@ -52,10 +52,10 @@ const EmployeeCard = () => {
             {!loading &&
                 <Grid container direction="column" alignItems="center">
                     <Grid item>
-                        <h2 style={{width: 650}}>Співробітник</h2>
+                        <h2 style={{width: 800}}>Співробітник</h2>
                     </Grid>
                     <Grid item>
-                        <Card sx={{maxWidth: 650}}>
+                        <Card sx={{maxWidth: 800}}>
                             <CardContent>
                                 <Grid container spacing={2}>
                                     <Grid item xs={6}>
@@ -100,7 +100,7 @@ const EmployeeCard = () => {
                                             src={`data:image/jpeg;charset=utf-8;base64,${employee.photo}`}
                                             alt="photo"
                                             loading="lazy"
-                                            width={300}
+                                            width={350}
                                             style={{float: 'right'}}
                                         />
                                         <Button
@@ -122,7 +122,7 @@ const EmployeeCard = () => {
                     </Grid>
                     {wasChanged &&
                         <Grid item>
-                            <div style={{width: 650, paddingTop: 20}}>
+                            <div style={{width: 800, paddingTop: 20}}>
                                 <Button variant="contained" style={{float: 'right'}}>Зберегти</Button>
                             </div>
                         </Grid>

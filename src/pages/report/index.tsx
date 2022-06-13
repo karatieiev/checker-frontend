@@ -31,15 +31,17 @@ const Report = () => {
         <>
             {loading && <Loader />}
             <Header />
-            <h2>Звіт</h2>
-            <DataGrid
-                autoHeight
-                disableSelectionOnClick
-                columns={columns}
-                rows={list}
-                pageSize={10}
-                rowsPerPageOptions={[10]}
-            />
+            <div style={{width: 800, margin: '0 auto'}}>
+                <h2>Звіт</h2>
+                <DataGrid
+                    autoHeight
+                    disableSelectionOnClick
+                    columns={columns}
+                    rows={list}
+                    pageSize={10}
+                    rowsPerPageOptions={[10]}
+                />
+            </div>
         </>
     );
 }

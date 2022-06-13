@@ -33,15 +33,17 @@ const Employees = () => {
         <>
             {loading && <Loader />}
             <Header />
-            <h2>Співробітники</h2>
-            <DataGrid
-                autoHeight
-                columns={columns}
-                rows={list}
-                pageSize={10}
-                rowsPerPageOptions={[10]}
-                onRowDoubleClick={params => navigate(`/employees/${params.id}`, { replace: false })}
-            />
+            <div style={{width: 800, margin: '0 auto'}}>
+                <h2>Співробітники</h2>
+                <DataGrid
+                    autoHeight
+                    columns={columns}
+                    rows={list}
+                    pageSize={10}
+                    rowsPerPageOptions={[10]}
+                    onRowDoubleClick={params => navigate(`/employees/${params.id}`, { replace: false })}
+                />
+            </div>
         </>
     );
 }
