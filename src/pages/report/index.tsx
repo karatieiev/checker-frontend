@@ -18,14 +18,9 @@ const Report = () => {
     const getReportList = () => {
         setLoading(true);
         getReport()
-            .then(list => {
-                setList(list);
-                setLoading(false);
-            })
-            .catch(() => {
-                setList([]);
-                setLoading(false);
-            });
+            .then(list => setList(list))
+            .catch(() => setList([]))
+            .finally(() => setLoading(false));
     }
 
     useEffect(() => {
@@ -36,6 +31,7 @@ const Report = () => {
         <>
             {loading && <Loader />}
             <Header />
+            <h2>Звіт</h2>
             <DataGrid
                 autoHeight
                 disableSelectionOnClick

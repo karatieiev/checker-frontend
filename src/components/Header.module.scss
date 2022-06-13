@@ -1,5 +1,5 @@
 ul {
-  margin: 0 0 10px 0;
+  margin: 0;
   padding: 5px 0 5px 0;
   list-style-type: none;
   overflow: hidden;
@@ -19,4 +19,9 @@ ul {
     background-color: #eee;
     border-radius: 10px;
   }
+}
+
+h2 {
+  color: #444;
+  margin-top: 10px;
 }

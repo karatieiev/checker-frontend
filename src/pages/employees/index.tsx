@@ -3,6 +3,7 @@ import {getEmployees} from "../../utils/api";
 import Loader from "../../components/Loader";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Header from "../../components/Header";
+import {useNavigate} from "react-router-dom";
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'QR', width: 70 },
@@ -14,18 +15,14 @@ const columns: GridColDef[] = [
 const Employees = () => {
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
+    const navigate = useNavigate();
 
     const getEmployeesList = () => {
         setLoading(true);
         getEmployees()
-            .then(list => {
-                setList(list);
-                setLoading(false);
-            })
-            .catch(() => {
-                setList([]);
-                setLoading(false);
-            });
+            .then(list => setList(list))
+            .catch(() => setList([]))
+            .finally(() => setLoading(false));
     }
 
     useEffect(() => {
@@ -36,13 +33,14 @@ const Employees = () => {
         <>
             {loading && <Loader />}
             <Header />
+            <h2>Співробітники</h2>
             <DataGrid
                 autoHeight
-                disableSelectionOnClick
                 columns={columns}
                 rows={list}
                 pageSize={10}
                 rowsPerPageOptions={[10]}
+                onRowDoubleClick={params => navigate(`/employees/${params.id}`, { replace: false })}
             />
         </>
     );
