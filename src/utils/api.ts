@@ -7,3 +7,11 @@ export const getEmployees = (id: Number = 0): Promise<any> => {
             throw new Error("Error getting employees list");
         });
 }
+
+export const getReport = (): Promise<any> => {
+    return fetch(`${url}/report`)
+        .then(result => {
+            if (result.ok) return result.json();
+            throw new Error("Error getting report");
+        });
+}
