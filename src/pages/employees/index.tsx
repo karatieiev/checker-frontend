@@ -32,8 +32,6 @@ const Employees = () => {
         getEmployeesList();
     }, []);
 
-    console.log(list);
-
     return (
         <>
             {loading && <Loader />}

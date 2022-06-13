@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Employees from "./pages/employees";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -8,6 +9,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Employees />
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Employees />} />
+            <Route path="/employees" element={<Employees />} />
+        </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
