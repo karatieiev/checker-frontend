@@ -1,23 +1,23 @@
 import React, {useEffect, useState} from "react";
-import {getEmployees} from "../../utils/api";
+import {getReport} from "../../utils/api";
 import Loader from "../../components/Loader";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Header from "../../components/Header";
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'QR', width: 70 },
+    { field: 'id', headerName: 'id', width: 70 },
+    { field: 'employee_id', headerName: 'RQ', width: 70 },
     { field: 'name', headerName: 'Співробітник', flex: 300 },
-    { field: 'position', headerName: 'Посада', flex: 200 },
-    { field: 'date_of_birth', headerName: 'День народження', flex: 150 },
+    { field: 'time', headerName: 'Час фіксації', flex: 150 },
 ];
 
-const Employees = () => {
+const Report = () => {
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
 
-    const getEmployeesList = () => {
+    const getReportList = () => {
         setLoading(true);
-        getEmployees()
+        getReport()
             .then(list => {
                 setList(list);
                 setLoading(false);
@@ -29,7 +29,7 @@ const Employees = () => {
     }
 
     useEffect(() => {
-        getEmployeesList();
+        getReportList();
     }, []);
 
     return (
@@ -48,4 +48,4 @@ const Employees = () => {
     );
 }
 
-export default Employees;
+export default Report;
