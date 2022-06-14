@@ -28,3 +28,25 @@ export const putEmployee = (body: any): Promise<any> => {
         throw new Error("Error saving employee");
     });
 }
+
+export const postEmployee = (body: any): Promise<any> => {
+    return fetch(`${url}/employees`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(body)
+    }).then(result => {
+        if (result.ok) return true;
+        throw new Error("Error adding employee");
+    });
+}
+
+export const deleteEmployee = (id: string): Promise<any> => {
+    return fetch(`${url}/employees/${id}`, {
+        method: 'DELETE'
+    }).then(result => {
+        if (result.ok) return true;
+        throw new Error("Error deleting employee");
+    });
+}
