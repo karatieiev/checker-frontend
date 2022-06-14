@@ -5,8 +5,8 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Header from "../../components/Header";
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'id', width: 70 },
-    { field: 'employee_id', headerName: 'RQ', width: 70 },
+    { field: 'id', headerName: 'id', width: 70, type: "number" },
+    { field: 'employee_id', headerName: 'RQ', width: 70, type: "number" },
     { field: 'name', headerName: 'Співробітник', flex: 300 },
     { field: 'time', headerName: 'Час фіксації', flex: 150, type: "dateTime" },
 ];

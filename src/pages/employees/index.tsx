@@ -7,10 +7,10 @@ import {useNavigate} from "react-router-dom";
 import {Button, Grid} from "@mui/material";
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'QR', width: 70 },
+    { field: 'id', headerName: 'QR', width: 70, type: "number" },
     { field: 'name', headerName: 'Співробітник', flex: 300 },
     { field: 'position', headerName: 'Посада', flex: 200 },
-    { field: 'date_of_birth', headerName: 'День народження', flex: 150 },
+    { field: 'date_of_birth', headerName: 'День народження', flex: 150, type: "date" },
 ];
 
 const Employees = () => {
