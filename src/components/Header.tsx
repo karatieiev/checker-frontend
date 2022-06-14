@@ -3,8 +3,8 @@ import "./Header.module.scss";
 import {useNavigate} from "react-router-dom";
 
 const menuList = [
-    {link: "/employees", caption: "Співробітники"},
-    {link: "/report", caption: "Звіт"}
+    {link: "/web/employees", caption: "Співробітники"},
+    {link: "/web/report", caption: "Звіт"}
 ];
 
 const Header = () => {

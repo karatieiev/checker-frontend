@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {getEmployees, putEmployee} from "../../utils/api";
+import {getEmployees, postEmployee, putEmployee} from "../../utils/api";
 import Loader from "../../components/Loader";
 import {useNavigate, useParams} from "react-router-dom";
 import Header from "../../components/Header";
@@ -9,23 +9,23 @@ import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const EmployeeCard = () => {
+    const {id} = useParams();
     const [employee, setEmployee] = useState({
-        id: null,
+        id: 0,
         name: "",
         date_of_birth: "",
         position: "",
         photo: ""
     });
     const [wasChanged, setWasChanged] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const {id} = useParams();
+    const [loading, setLoading] = useState(id !== 'new');
     const inputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (id) getEmployees(id)
+        if (id && id !== 'new') getEmployees(id)
             .then(result => setEmployee(result[0]))
-            .catch(() => setEmployee({id: null, name: '', date_of_birth: '', position: '', photo: ''}))
+            .catch(() => setEmployee({id: 0, name: '', date_of_birth: '', position: '', photo: ''}))
             .finally(() => setLoading(false));
     }, []);
 
@@ -48,8 +48,10 @@ const EmployeeCard = () => {
 
     const handleSave = () => {
         setLoading(true);
-        putEmployee(employee)
-            .then(() => navigate("/employees", { replace: false }));
+        if (id === 'new')
+            postEmployee(employee).then(() => navigate("/web/employees", { replace: false }));
+        else
+            putEmployee(employee).then(() => navigate("/web/employees", { replace: false }));
     }
 
     return (
@@ -76,7 +78,7 @@ const EmployeeCard = () => {
                                         </Box>
                                         <Box sx={{pb: 2}}>
                                             <TextField
-                                                label="Співробітник"
+                                                label="Ім'я"
                                                 value={employee.name}
                                                 fullWidth
                                                 onChange={(e) => handleTextFieldChange("name", e.target.value)}
@@ -105,8 +107,7 @@ const EmployeeCard = () => {
                                     <Grid item xs={6}>
                                         <img
                                             src={`data:image/jpeg;charset=utf-8;base64,${employee.photo}`}
-                                            alt="photo"
-                                            loading="lazy"
+                                            alt=""
                                             width={350}
                                             style={{float: 'right'}}
                                         />

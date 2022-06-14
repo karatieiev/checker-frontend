@@ -8,7 +8,7 @@ const columns: GridColDef[] = [
     { field: 'id', headerName: 'id', width: 70 },
     { field: 'employee_id', headerName: 'RQ', width: 70 },
     { field: 'name', headerName: 'Співробітник', flex: 300 },
-    { field: 'time', headerName: 'Час фіксації', flex: 150 },
+    { field: 'time', headerName: 'Час фіксації', flex: 150, type: "dateTime" },
 ];
 
 const Report = () => {
